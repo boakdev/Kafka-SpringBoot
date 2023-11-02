@@ -1,5 +1,6 @@
 package entity;
 
+import dto.ShopItemDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,8 @@ public class ShopItem {
     private String productIdentifier;
 
     private Integer amount;
+
+    private Float price;
 
     @ManyToOne
     @JoinColumn(name = "shop_id")
