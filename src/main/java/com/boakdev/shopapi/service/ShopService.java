@@ -1,31 +1,26 @@
-package controller;
+package com.boakdev.shopapi.service;
 
+import com.boakdev.shopapi.dto.ShopDTO;
+import com.boakdev.shopapi.entity.Shop;
+import com.boakdev.shopapi.entity.ShopItem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.boakdev.shopapi.repository.ShopRepository;
 
-import dto.ShopDTO;
-import entity.Shop;
-import entity.ShopItem;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import repository.ShopRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@RestController
-@RequestMapping("/shop")
-@RequiredArgsConstructor
-public class ShopController {
+@Service
+public class ShopService {
 
-    /*
-    má prática chamar repository direto do controller,
-    somente para agilizar testes, depois implememtar camda service em projeto
-     */
+    @Autowired
+    private ShopRepository shopRepository;
 
-    private final ShopRepository shopRepository;
-
-    @GetMapping
+    @Transactional(readOnly = true)
     public List<ShopDTO> getShop(){
         return shopRepository
                 .findAll()
@@ -34,8 +29,7 @@ public class ShopController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
-    public ShopDTO saveShop(@RequestBody ShopDTO shopDTO){
+    public ShopDTO saveShop(ShopDTO shopDTO){
         shopDTO.setIdentifier(UUID.randomUUID().toString());
         shopDTO.setDateShop(LocalDate.now());
         shopDTO.setStatus("PENDING");

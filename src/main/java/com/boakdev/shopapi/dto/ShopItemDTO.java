@@ -1,12 +1,14 @@
-package dto;
+package com.boakdev.shopapi.dto;
 
-import entity.ShopItem;
+import com.boakdev.shopapi.entity.ShopItem;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class ShopItemDTO {
+public class ShopItemDTO implements Serializable {
 
     private String productIdentifier;
     private Integer amount;

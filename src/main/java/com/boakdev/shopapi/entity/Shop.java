@@ -1,10 +1,11 @@
-package entity;
+package com.boakdev.shopapi.entity;
 
-import dto.ShopDTO;
+import com.boakdev.shopapi.dto.ShopDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
-public class Shop {
+public class Shop implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

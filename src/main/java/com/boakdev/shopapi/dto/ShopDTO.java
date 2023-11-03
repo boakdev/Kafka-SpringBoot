@@ -1,9 +1,10 @@
-package dto;
+package com.boakdev.shopapi.dto;
 
-import entity.Shop;
+import com.boakdev.shopapi.entity.Shop;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class ShopDTO {
+public class ShopDTO implements Serializable {
 
     private String identifier;
     private LocalDate dateShop;

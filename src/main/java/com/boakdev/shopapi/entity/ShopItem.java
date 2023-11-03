@@ -1,21 +1,22 @@
-package entity;
+package com.boakdev.shopapi.entity;
 
-import dto.ShopItemDTO;
+import com.boakdev.shopapi.dto.ShopItemDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity(name = "shop_item")
-public class ShopItem {
+public class ShopItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "product_indentifier")
+    @Column(name = "product_identifier")
     private String productIdentifier;
 
     private Integer amount;
