@@ -20,6 +20,9 @@ public class ShopService {
     @Autowired
     private ShopRepository shopRepository;
 
+    @Autowired
+    private KafkaClient kafkaClient;
+
     @Transactional(readOnly = true)
     public List<ShopDTO> getShop(){
         return shopRepository
@@ -38,7 +41,7 @@ public class ShopService {
         for(ShopItem shopItem : shop.getItems()){
             shopItem.setShop(shop);
         }
-
+        kafkaClient.sendMessage(shopDTO);
         return ShopDTO.convert(shopRepository.save(shop));
     }
 }
